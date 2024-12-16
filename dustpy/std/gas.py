@@ -200,6 +200,7 @@ def jacobian(sim, x, *args, **kwargs):
     # Parameters
     nu = sim.gas.nu * sim.dust.backreaction.A
     v = sim.dust.backreaction.B * 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
+    v += sim.gas.v.wind # wind added as an advective term into Jacobian
 
     # Helper variables for convenience
     r = sim.grid.r
@@ -422,7 +423,8 @@ def vrad(sim):
         sim.gas.eta,
         sim.grid.OmegaK,
         sim.grid.r,
-        sim.gas.v.visc
+        sim.gas.v.visc,
+        sim.gas.v.wind
     )
 
 
