@@ -170,6 +170,7 @@ class Simulation(Frame):
         self.gas.v = Group(self, description="Velocities")
         self.gas.v.rad = None
         self.gas.v.visc = None
+        self.gas.v.wind = None
         self.gas.v.updater = ["visc", "rad"]
         self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
                             "rho", "n", "mfp", "P", "eta", "S"]
@@ -751,6 +752,10 @@ class Simulation(Frame):
             self.gas.v.visc = Field(self, np.zeros(shape1),
                                     description="Viscous accretion velocity [cm/s]")
             self.gas.v.visc.updater = std.gas.vvisc
+        #Wind advection velocity
+        if self.gas.v.wind is None: # updater added on the magnetized_dustpy side of things
+            self.gas.v.wind = Field(self, np.zeros(shape1), 
+                                   description = 'Wind advection velocity [cm/s]')
         # Radial gas velocity
         if self.gas.v.rad is None:
             self.gas.v.rad = Field(self, np.zeros(shape1),
