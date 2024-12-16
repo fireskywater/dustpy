@@ -626,13 +626,14 @@ subroutine v_rad(A, B, eta, OmegaK, r, vv, v, Nr)
    double precision, intent(in)  :: OmegaK(Nr)
    double precision, intent(in)  :: r(Nr)
    double precision, intent(in)  :: vv(Nr)
+   double precision, intent(in)  :: vw(Nr)
    double precision, intent(out) :: v(Nr)
    integer,          intent(in)  :: Nr
 
    double precision :: vb(Nr)
 
    vb(:) = 2.d0 * eta(:) * r(:) * OmegaK(:)
-   v(:) = A(:)*vv(:) + B(:)*vb(:)
+   v(:) = A(:)*vv(:) + B(:)*vb(:) + vw(Nr)
 
 end subroutine v_rad
 
