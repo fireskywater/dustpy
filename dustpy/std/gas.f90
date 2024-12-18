@@ -633,7 +633,7 @@ subroutine v_rad(A, B, eta, OmegaK, r, vv, v, Nr)
    double precision :: vb(Nr)
 
    vb(:) = 2.d0 * eta(:) * r(:) * OmegaK(:)
-   v(:) = A(:)*vv(:) + B(:)*vb(:) + vw(Nr)
+   v(:) = A(:)*vv(:) + B(:)*vb(:) + vw(:)
 
 end subroutine v_rad
 
